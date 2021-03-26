@@ -12,6 +12,8 @@ import Vision
 class ViewController: UIViewController,UINavigationControllerDelegate {
     
     @IBOutlet weak var photoDisplay: UIImageView!
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var cameraButton: UIButton!
     
     let imagePicker = UIImagePickerController()
     
@@ -22,13 +24,31 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
+        
+        buttonStyling()
     }
     
-
+    //MARK:- Button Click Events
     
-    @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
+    @IBAction func palletTapped(_ sender: UIBarButtonItem){
+        let vc = Screen2()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @IBAction func onCameraClick(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    @IBAction func onUploadClick(_ sender: Any){
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    //MARK:- Functions
     
     func detect(image:CIImage) {
         
@@ -48,7 +68,20 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
             print(error)
         }
     }
+    
+    // MARK:  Styling
+    
+    func buttonStyling()
+    {
+        uploadButton.layer.cornerRadius = uploadButton.bounds.height/2
+        cameraButton.layer.cornerRadius = cameraButton.bounds.height/2
+        
+        uploadButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        cameraButton.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 25)
+    }
+    
 }
+ //MARK:- Extensions
 
 extension ViewController: UIImagePickerControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
