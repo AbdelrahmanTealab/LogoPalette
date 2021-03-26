@@ -13,6 +13,8 @@
 		B62B83B3260E4177009471F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B62B83B1260E4177009471F6 /* Main.storyboard */; };
 		B62B83B5260E4178009471F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B62B83B4260E4178009471F6 /* Assets.xcassets */; };
 		B62B83B8260E4178009471F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B62B83B6260E4178009471F6 /* LaunchScreen.storyboard */; };
+		B62B83C1260E4185009471F6 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B62B83C0260E4185009471F6 /* Inceptionv3.mlmodel */; };
+		B62B83C4260E4AC2009471F6 /* LogoIdentifier 1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B62B83C3260E4AC2009471F6 /* LogoIdentifier 1.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		B62B83B4260E4178009471F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B62B83B7260E4178009471F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B62B83B9260E4178009471F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B62B83C0260E4185009471F6 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		B62B83C3260E4AC2009471F6 /* LogoIdentifier 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "LogoIdentifier 1.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				B62B83B4260E4178009471F6 /* Assets.xcassets */,
 				B62B83B6260E4178009471F6 /* LaunchScreen.storyboard */,
 				B62B83B9260E4178009471F6 /* Info.plist */,
+				B62B83C3260E4AC2009471F6 /* LogoIdentifier 1.mlmodel */,
+				B62B83C0260E4185009471F6 /* Inceptionv3.mlmodel */,
 			);
 			path = LogoPalette;
 			sourceTree = "<group>";
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B62B83B0260E4177009471F6 /* ViewController.swift in Sources */,
+				B62B83C4260E4AC2009471F6 /* LogoIdentifier 1.mlmodel in Sources */,
+				B62B83C1260E4185009471F6 /* Inceptionv3.mlmodel in Sources */,
 				B62B83AC260E4177009471F6 /* AppDelegate.swift in Sources */,
 				B62B83AE260E4177009471F6 /* SceneDelegate.swift in Sources */,
 			);
