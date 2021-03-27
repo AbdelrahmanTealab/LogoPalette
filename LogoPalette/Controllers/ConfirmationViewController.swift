@@ -11,22 +11,27 @@ import Vision
 
 class ConfirmationViewController: UIViewController {
 
+    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var button2: UIButton!
+    @IBOutlet weak var button3: UIButton!
+    @IBOutlet weak var button4: UIButton!
+    
     var results:[VNClassificationObservation]?
-    @IBOutlet weak var debugView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.debugView.text = ""
-        print("THIS IS BEING PRINTED IN THE SECOND VD ********************************************************")
-        print("THIS IS BEING PRINTED IN THE SECOND VD ********************************************************")
-        print(results!)
         
+
         
-        if let firstResult = results?.prefix(4) {
-            var description = firstResult.map { classification in
+        if let allResults = results {
+            var description = allResults.map { classification in
                 return "\(Int(classification.confidence*100))% \(classification.identifier)"
             }
-            self.debugView.text.append(description.joined(separator: "\n"))
+            let allButtons = [button1,button2,button3,button4]
+            for button in allButtons {
+                button?.setTitle(description[button!.tag], for: .normal)
+            }
+           // self.debugView.text.append(description.joined(separator: "\n"))
         }
     }
     

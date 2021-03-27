@@ -95,21 +95,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8id-lA-eMB">
-                                <rect key="frame" x="16" y="20" width="343" height="197"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBx-Ai-EIU">
+                                <rect key="frame" x="16" y="20" width="343" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="52T-Ao-Gww">
+                                <rect key="frame" x="0.0" y="473" width="375" height="144"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxp-CY-YvT">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="32.5"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1e-Ps-JJE">
+                                        <rect key="frame" x="0.0" y="37.5" width="375" height="32"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TY4-jV-Ur1">
+                                        <rect key="frame" x="0.0" y="74.5" width="375" height="32.5"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="773-AW-n53">
+                                        <rect key="frame" x="0.0" y="112" width="375" height="32"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nHU-rX-ttf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nHU-rX-ttf" firstAttribute="bottom" secondItem="52T-Ao-Gww" secondAttribute="bottom" constant="30" id="0gJ-WX-I4x"/>
+                            <constraint firstItem="52T-Ao-Gww" firstAttribute="height" secondItem="R4C-6X-p55" secondAttribute="height" multiplier="0.222566" id="QKU-5n-ZkV"/>
+                            <constraint firstItem="nHU-rX-ttf" firstAttribute="trailing" secondItem="52T-Ao-Gww" secondAttribute="trailing" id="gat-nA-IbP"/>
+                            <constraint firstItem="52T-Ao-Gww" firstAttribute="leading" secondItem="nHU-rX-ttf" secondAttribute="leading" id="xlP-zb-7wN"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="debugView" destination="8id-lA-eMB" id="7TY-S0-fwr"/>
+                        <outlet property="button1" destination="pxp-CY-YvT" id="4ao-az-U88"/>
+                        <outlet property="button2" destination="Y1e-Ps-JJE" id="v8v-H0-a3a"/>
+                        <outlet property="button3" destination="TY4-jV-Ur1" id="FaV-tr-NMG"/>
+                        <outlet property="button4" destination="773-AW-n53" id="enB-qj-3i7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DKX-GG-8ms" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -138,9 +166,6 @@
     <resources>
         <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
         <image name="folder.circle.fill" catalog="system" width="128" height="121"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
