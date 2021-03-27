@@ -80,11 +80,41 @@
                         <outlet property="albumButton" destination="P1q-Zw-4Ak" id="rvP-oK-Q3D"/>
                         <outlet property="cameraButton" destination="RIz-kM-9Tn" id="TFP-QV-c2r"/>
                         <outlet property="tableView" destination="Hin-nU-7B2" id="FL1-BJ-hYO"/>
+                        <segue destination="k0p-M5-Uib" kind="presentation" identifier="confirmationModal" id="KVu-Q2-RsB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762.39999999999998" y="74.212893553223395"/>
+            <point key="canvasLocation" x="657" y="73"/>
+        </scene>
+        <!--Confirmation View Controller-->
+        <scene sceneID="ghz-GE-yES">
+            <objects>
+                <viewController id="k0p-M5-Uib" customClass="ConfirmationViewController" customModule="LogoPalette" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R4C-6X-p55">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8id-lA-eMB">
+                                <rect key="frame" x="16" y="20" width="343" height="197"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nHU-rX-ttf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="debugView" destination="8id-lA-eMB" id="7TY-S0-fwr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DKX-GG-8ms" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1605.5999999999999" y="73.313343328335833"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KvU-uy-thj">
@@ -108,6 +138,9 @@
     <resources>
         <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
         <image name="folder.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

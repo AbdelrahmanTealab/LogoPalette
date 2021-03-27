@@ -18,6 +18,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     let imagePicker = UIImagePickerController()
     let palettes = [["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456]]
     
+    var mlResults = Array<VNClassificationObservation>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +51,14 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     
     func detect(image:CIImage) {
         
-        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else{
+        guard let model = try? VNCoreMLModel(for: LogoIdentifier_1().model) else{
             fatalError("loading CoreML model failed")
         }
         let request = VNCoreMLRequest(model: model) { (request, error) in
             guard let results = request.results as? [VNClassificationObservation] else {
                 fatalError("error reading the request results")
             }
-            print(results)
+            self.mlResults = results
         }
         let handler = VNImageRequestHandler(ciImage: image)
         do {
@@ -67,7 +68,12 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
         }
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if(segue.identifier == Constants.segueIdentifier) {
+                let destinationVC = (segue.destination as! ConfirmationViewController)
+                destinationVC.results = (sender as! [VNClassificationObservation])
+            }
+        }
     
 }
  //MARK:- Extensions
@@ -81,7 +87,9 @@ extension ViewController: UIImagePickerControllerDelegate{
             }
             detect(image: ciimage)
         }
-        imagePicker.dismiss(animated: true, completion: nil)
+        imagePicker.dismiss(animated: true) {
+            self.performSegue(withIdentifier: Constants.segueIdentifier, sender: self.mlResults)
+        }
     }
 }
 

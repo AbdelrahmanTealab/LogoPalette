@@ -18,6 +18,7 @@
 		B64A03DD260EAB6D00B03A0D /* paletteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64A03DB260EAB6D00B03A0D /* paletteCell.swift */; };
 		B64A03DE260EAB6D00B03A0D /* paletteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64A03DC260EAB6D00B03A0D /* paletteCell.xib */; };
 		B64A03E7260EB10600B03A0D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64A03E6260EB10600B03A0D /* Constants.swift */; };
+		B64A03ED260EF83300B03A0D /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64A03EC260EF83300B03A0D /* ConfirmationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B64A03DB260EAB6D00B03A0D /* paletteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paletteCell.swift; sourceTree = "<group>"; };
 		B64A03DC260EAB6D00B03A0D /* paletteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = paletteCell.xib; sourceTree = "<group>"; };
 		B64A03E6260EB10600B03A0D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B64A03EC260EF83300B03A0D /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		BFBA882D260E7370004DAA52 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B64A03EC260EF83300B03A0D /* ConfirmationViewController.swift */,
 				B62B83AF260E4177009471F6 /* ViewController.swift */,
 			);
 			path = Controllers;
@@ -183,6 +186,7 @@
 				B64A03DD260EAB6D00B03A0D /* paletteCell.swift in Sources */,
 				B64A03E7260EB10600B03A0D /* Constants.swift in Sources */,
 				B62B83AC260E4177009471F6 /* AppDelegate.swift in Sources */,
+				B64A03ED260EF83300B03A0D /* ConfirmationViewController.swift in Sources */,
 				B62B83AE260E4177009471F6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
