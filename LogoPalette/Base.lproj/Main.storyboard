@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--🎨 Logo Palette-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LogoPalette" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,113 +17,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="NwX-F5-P9V">
-                                <rect key="frame" x="20" y="104" width="335" height="280"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hin-nU-7B2">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="ReusableCell" id="qP2-pQ-ihm" customClass="paletteCell" customModule="LogoPalette" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qP2-pQ-ihm" id="yxJ-pY-VIv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1q-Zw-4Ak">
+                                <rect key="frame" x="30" y="587" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="280" id="9cR-Et-32O"/>
+                                    <constraint firstAttribute="width" constant="50" id="22q-wp-jem"/>
+                                    <constraint firstAttribute="height" constant="50" id="BcW-9D-6Xc"/>
                                 </constraints>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RIz-kM-9Tn">
-                                <rect key="frame" x="20" y="424" width="335" height="60"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="So2-Zc-1qc"/>
-                                </constraints>
-                                <state key="normal" image="camera" catalog="system">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="         Camera">
-                                            <attributes>
-                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="25" name="Avenir-Heavy"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                <color key="tintColor" red="0.88469317140000003" green="0.85131472539999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="">
+                                    <imageReference key="image" image="folder.circle.fill" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="thin"/>
                                 </state>
                                 <connections>
-                                    <action selector="onCameraClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wi5-vZ-LEk"/>
+                                    <action selector="albumTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ejg-a0-GIL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P1q-Zw-4Ak">
-                                <rect key="frame" x="20" y="514" width="335" height="60"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIz-kM-9Tn">
+                                <rect key="frame" x="295" y="587" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="0Y1-MH-cvz"/>
+                                    <constraint firstAttribute="height" constant="50" id="Cpr-gx-GaI"/>
+                                    <constraint firstAttribute="width" constant="50" id="ST9-mE-DaV"/>
                                 </constraints>
-                                <color key="tintColor" red="0.93725490199999995" green="0.69019607839999997" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="         Upload">
-                                            <attributes>
-                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="25" name="Avenir-Heavy"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <imageReference key="image" image="icloud.and.arrow.up" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
+                                <color key="tintColor" red="0.88469317140000003" green="0.85131472539999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="">
+                                    <imageReference key="image" image="camera.circle.fill" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="thin"/>
                                 </state>
                                 <connections>
-                                    <action selector="onUploadClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QgM-Dm-Mfj"/>
+                                    <action selector="cameraTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CnY-fJ-dik"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P1q-Zw-4Ak" secondAttribute="trailing" constant="20" id="FR1-pB-mTz"/>
-                            <constraint firstItem="RIz-kM-9Tn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="HO1-co-JPM"/>
-                            <constraint firstItem="P1q-Zw-4Ak" firstAttribute="top" secondItem="RIz-kM-9Tn" secondAttribute="bottom" constant="30" id="R7n-ky-FSI"/>
-                            <constraint firstItem="NwX-F5-P9V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="erE-Vw-y7T"/>
-                            <constraint firstItem="NwX-F5-P9V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="fao-yq-SU4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RIz-kM-9Tn" secondAttribute="trailing" constant="20" id="i8Q-md-Dhg"/>
-                            <constraint firstItem="RIz-kM-9Tn" firstAttribute="top" secondItem="NwX-F5-P9V" secondAttribute="bottom" constant="40" id="lMK-Zz-lMx"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NwX-F5-P9V" secondAttribute="trailing" constant="20" id="oQd-zY-8KJ"/>
-                            <constraint firstItem="P1q-Zw-4Ak" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="zp0-1F-MWx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RIz-kM-9Tn" secondAttribute="trailing" constant="30" id="Fso-su-Gfg"/>
+                            <constraint firstItem="P1q-Zw-4Ak" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="GLR-ec-krd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="P1q-Zw-4Ak" secondAttribute="bottom" constant="30" id="P9n-6f-hwX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RIz-kM-9Tn" secondAttribute="bottom" constant="30" id="TNL-tx-csb"/>
+                            <constraint firstItem="Hin-nU-7B2" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="aCz-QS-Rj8"/>
+                            <constraint firstItem="Hin-nU-7B2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hdG-Hi-hTM"/>
+                            <constraint firstItem="Hin-nU-7B2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lbd-8V-X4m"/>
+                            <constraint firstItem="Hin-nU-7B2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ooC-Zt-SkT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Ho6-fb-cSZ">
-                        <barButtonItem key="rightBarButtonItem" title="Pallete" image="paintpalette" catalog="system" id="tEP-wy-nm6">
-                            <connections>
-                                <action selector="palletTapped:" destination="BYZ-38-t0r" id="nvs-0b-Dbb"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="🎨 Logo Palette" largeTitleDisplayMode="always" id="Ho6-fb-cSZ"/>
                     <connections>
-                        <outlet property="cameraButton" destination="RIz-kM-9Tn" id="gdI-NI-ni1"/>
-                        <outlet property="photoDisplay" destination="NwX-F5-P9V" id="Lqw-kc-A5h"/>
-                        <outlet property="uploadButton" destination="P1q-Zw-4Ak" id="rvP-oK-Q3D"/>
+                        <outlet property="albumButton" destination="P1q-Zw-4Ak" id="rvP-oK-Q3D"/>
+                        <outlet property="cameraButton" destination="RIz-kM-9Tn" id="TFP-QV-c2r"/>
+                        <outlet property="tableView" destination="Hin-nU-7B2" id="FL1-BJ-hYO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763.768115942029" y="75"/>
-        </scene>
-        <!--Screen2-->
-        <scene sceneID="6f3-Ze-3au">
-            <objects>
-                <viewController id="FNO-ld-Nxq" customClass="Screen2" customModule="LogoPalette" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="g8L-ll-TIp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="WHs-a3-T5Z"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aoe-62-Q12" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1671" y="74"/>
+            <point key="canvasLocation" x="762.39999999999998" y="74.212893553223395"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KvU-uy-thj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xET-fm-beN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aeP-LY-kMG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aeP-LY-kMG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -137,10 +106,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera" catalog="system" width="128" height="94"/>
-        <image name="icloud.and.arrow.up" catalog="system" width="128" height="106"/>
-        <image name="logo" width="540" height="540"/>
-        <image name="paintpalette" catalog="system" width="128" height="105"/>
+        <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="folder.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
