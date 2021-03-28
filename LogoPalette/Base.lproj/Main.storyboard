@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hin-nU-7B2">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="ReusableCell" id="qP2-pQ-ihm" customClass="paletteCell" customModule="LogoPalette" customModuleProvider="target">
@@ -35,58 +35,140 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLJ-KH-4w5" userLabel="smallfooter">
                                 <rect key="frame" x="0.0" y="782" width="414" height="114"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1q-Zw-4Ak">
-                                        <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cv1-OT-FcQ">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="22q-wp-jem"/>
-                                            <constraint firstAttribute="height" constant="60" id="BcW-9D-6Xc"/>
+                                            <constraint firstAttribute="width" constant="60" id="AuZ-kO-bkJ"/>
+                                            <constraint firstAttribute="height" constant="60" id="Q3n-4K-3dl"/>
                                         </constraints>
                                         <color key="tintColor" name="Alice Blue"/>
                                         <state key="normal" title="">
                                             <imageReference key="image" image="folder.circle.fill" catalog="system" symbolScale="small"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="thin"/>
                                         </state>
+                                        <variation key="heightClass=compact-widthClass=regular">
+                                            <color key="tintColor" name="Ming Blue green"/>
+                                        </variation>
                                         <connections>
-                                            <action selector="albumTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ejg-a0-GIL"/>
+                                            <action selector="albumTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tCZ-7c-n5c"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIz-kM-9Tn">
-                                        <rect key="frame" x="334" y="20" width="60" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6Y-uL-x7f">
+                                        <rect key="frame" x="344" y="10" width="60" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="Cpr-gx-GaI"/>
-                                            <constraint firstAttribute="width" constant="60" id="ST9-mE-DaV"/>
+                                            <constraint firstAttribute="height" constant="60" id="4rR-FN-KfL"/>
+                                            <constraint firstAttribute="width" constant="60" id="rLp-nO-ima"/>
                                         </constraints>
                                         <color key="tintColor" name="Alice Blue"/>
                                         <state key="normal" title="">
                                             <imageReference key="image" image="camera.circle.fill" catalog="system" symbolScale="small"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="thin"/>
                                         </state>
+                                        <variation key="heightClass=compact-widthClass=regular">
+                                            <color key="tintColor" name="Ming Blue green"/>
+                                        </variation>
                                         <connections>
-                                            <action selector="cameraTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CnY-fJ-dik"/>
+                                            <action selector="cameraTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TiP-Wx-ttS"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Ming"/>
                                 <constraints>
-                                    <constraint firstItem="P1q-Zw-4Ak" firstAttribute="top" secondItem="XLJ-KH-4w5" secondAttribute="top" constant="20" id="8UT-PI-DSh"/>
-                                    <constraint firstItem="P1q-Zw-4Ak" firstAttribute="leading" secondItem="XLJ-KH-4w5" secondAttribute="leading" constant="20" id="H5a-Es-6gv"/>
-                                    <constraint firstAttribute="trailing" secondItem="RIz-kM-9Tn" secondAttribute="trailing" constant="20" id="HCq-dv-0yW"/>
-                                    <constraint firstItem="RIz-kM-9Tn" firstAttribute="top" secondItem="XLJ-KH-4w5" secondAttribute="top" constant="20" id="xoJ-yq-kH4"/>
+                                    <constraint firstItem="V6Y-uL-x7f" firstAttribute="top" secondItem="XLJ-KH-4w5" secondAttribute="top" constant="10" id="4RC-nT-Xca"/>
+                                    <constraint firstItem="Cv1-OT-FcQ" firstAttribute="leading" secondItem="XLJ-KH-4w5" secondAttribute="leading" constant="10" id="5fI-PZ-xbm"/>
+                                    <constraint firstAttribute="trailing" secondItem="V6Y-uL-x7f" secondAttribute="trailing" constant="10" id="82W-uF-LtL"/>
+                                    <constraint firstItem="Cv1-OT-FcQ" firstAttribute="top" secondItem="XLJ-KH-4w5" secondAttribute="top" constant="10" id="dbr-J6-b5A"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="Cv1-OT-FcQ"/>
+                                        <exclude reference="V6Y-uL-x7f"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="Cv1-OT-FcQ"/>
+                                        <include reference="V6Y-uL-x7f"/>
+                                    </mask>
+                                </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIz-kM-9Tn">
+                                <rect key="frame" x="836" y="44" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Cpr-gx-GaI"/>
+                                    <constraint firstAttribute="width" constant="60" id="ST9-mE-DaV"/>
+                                </constraints>
+                                <color key="tintColor" name="Alice Blue"/>
+                                <state key="normal" title="">
+                                    <imageReference key="image" image="camera.circle.fill" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="thin"/>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <color key="tintColor" name="Ming Blue green"/>
+                                </variation>
+                                <connections>
+                                    <action selector="cameraTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CnY-fJ-dik"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1q-Zw-4Ak">
+                                <rect key="frame" x="836" y="301.5" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="22q-wp-jem"/>
+                                    <constraint firstAttribute="height" constant="60" id="BcW-9D-6Xc"/>
+                                </constraints>
+                                <color key="tintColor" name="Alice Blue"/>
+                                <state key="normal" title="">
+                                    <imageReference key="image" image="folder.circle.fill" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="thin"/>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <color key="tintColor" name="Ming Blue green"/>
+                                </variation>
+                                <connections>
+                                    <action selector="albumTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ejg-a0-GIL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="XLJ-KH-4w5" secondAttribute="trailing" id="1HZ-34-jEX"/>
+                            <constraint firstItem="XLJ-KH-4w5" firstAttribute="top" secondItem="P1q-Zw-4Ak" secondAttribute="bottom" id="6Sj-AJ-bgl"/>
+                            <constraint firstAttribute="trailing" secondItem="RIz-kM-9Tn" secondAttribute="trailing" id="9bU-XW-0JO"/>
                             <constraint firstAttribute="bottom" secondItem="XLJ-KH-4w5" secondAttribute="bottom" id="KDt-YM-9wx"/>
                             <constraint firstItem="XLJ-KH-4w5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.127232" id="Vkj-Nq-iWZ"/>
                             <constraint firstItem="XLJ-KH-4w5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Wsd-T6-Eof"/>
+                            <constraint firstItem="RIz-kM-9Tn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Z29-QP-Efg"/>
                             <constraint firstItem="Hin-nU-7B2" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="aCz-QS-Rj8"/>
                             <constraint firstItem="Hin-nU-7B2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hdG-Hi-hTM"/>
                             <constraint firstItem="Hin-nU-7B2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lbd-8V-X4m"/>
                             <constraint firstItem="Hin-nU-7B2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ooC-Zt-SkT"/>
+                            <constraint firstAttribute="trailing" secondItem="P1q-Zw-4Ak" secondAttribute="trailing" id="sju-CH-jbz"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="RIz-kM-9Tn"/>
+                                <exclude reference="P1q-Zw-4Ak"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="6Sj-AJ-bgl"/>
+                                <exclude reference="9bU-XW-0JO"/>
+                                <exclude reference="Z29-QP-Efg"/>
+                                <exclude reference="sju-CH-jbz"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="RIz-kM-9Tn"/>
+                                <include reference="P1q-Zw-4Ak"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="6Sj-AJ-bgl"/>
+                                <include reference="9bU-XW-0JO"/>
+                                <include reference="Z29-QP-Efg"/>
+                                <include reference="sju-CH-jbz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Logo Palette" largeTitleDisplayMode="always" id="Ho6-fb-cSZ"/>
                     <connections>
