@@ -16,13 +16,15 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     let imagePicker = UIImagePickerController()
-    let palettes = [["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456]]
+    let palettes = [["logo":"logo","title":"default1","color1":0x2b2d42,"color2":0x8d99ae,"color3":0xedf2f4,"color4":0xef233c,"color5":0xd90429],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456]]
     
     var mlResults = Array<VNClassificationObservation>()
+    var editedImage = UIImage()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.dataSource = self
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
         imagePicker.delegate = self
@@ -35,6 +37,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     //MARK:- Button Click Events
 
     @IBAction func cameraTapped(_ sender: Any) {
+        imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -70,8 +73,12 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if(segue.identifier == Constants.segueIdentifier) {
-                let destinationVC = (segue.destination as! ConfirmationViewController)
-                destinationVC.results = (sender as! [VNClassificationObservation])
+                guard let segueData = sender as? TransferData
+                    else { return }
+                    if let secondVC = segue.destination as? ConfirmationViewController {
+                        secondVC.results = segueData.results
+                        secondVC.imageForDisplay = segueData.image
+                    }
             }
         }
     
@@ -82,13 +89,15 @@ extension ViewController: UIImagePickerControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let userEditedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self.editedImage = userEditedImage
             guard let ciimage = CIImage(image: userEditedImage) else {
                 fatalError("Error while converting image to ciimage")
             }
             detect(image: ciimage)
         }
         imagePicker.dismiss(animated: true) {
-            self.performSegue(withIdentifier: Constants.segueIdentifier, sender: self.mlResults)
+            let transferData = TransferData(results: self.mlResults, image: self.editedImage)
+            self.performSegue(withIdentifier: Constants.segueIdentifier, sender: transferData)
         }
     }
 }
@@ -152,3 +161,7 @@ extension UIColor {
    }
 }
 
+struct TransferData {
+    var results:[VNClassificationObservation]
+    var image:UIImage
+}

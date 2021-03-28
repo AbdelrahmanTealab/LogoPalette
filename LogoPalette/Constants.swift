@@ -8,7 +8,7 @@
 import Foundation
 
 struct Constants {
-    static let appName = "🎨 Logo Palette"
+    static let appName = "Logo Palette"
     static let cellIdentifier = "ReusableCell"
     static let cellNibName = "paletteCell"
     static let segueIdentifier = "confirmationModal"
