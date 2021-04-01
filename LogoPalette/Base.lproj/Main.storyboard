@@ -965,6 +965,7 @@
                         <outlet property="customColor3" destination="yFr-5d-qmO" id="jBn-RL-QrT"/>
                         <outlet property="customColor4" destination="uTg-Gq-anc" id="3c3-kv-3v0"/>
                         <outlet property="customColor5" destination="voq-Uh-1Ki" id="zp2-Kk-hTz"/>
+                        <outlet property="customLogo" destination="esa-Zf-IT8" id="VT2-fE-18z"/>
                         <outlet property="footerView" destination="gxk-CQ-X6x" id="iBu-DL-fk4"/>
                         <outlet property="imageViewDisplay" destination="cbx-vB-w2o" id="Pq7-BO-5dD"/>
                         <outlet property="paletteSegment" destination="zJE-dK-m4m" id="IH9-qR-dZN"/>

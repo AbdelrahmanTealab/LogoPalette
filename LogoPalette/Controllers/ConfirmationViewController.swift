@@ -18,6 +18,7 @@ class ConfirmationViewController: UIViewController {
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
 
+    @IBOutlet weak var customLogo: UIImageView!
     @IBOutlet weak var customColor1: UILabel!
     @IBOutlet weak var customColor2: UILabel!
     @IBOutlet weak var customColor3: UILabel!
@@ -41,6 +42,7 @@ class ConfirmationViewController: UIViewController {
     }
     
     func generateCustomPallete() {
+        customLogo.image = imageForDisplay!
         Palette.from(image: imageForDisplay!).generate { [self] in
             customColor1.backgroundColor = $0.vibrantColor
             customColor1.text =  customColor1.backgroundColor?.htmlRGBColor.uppercased()
