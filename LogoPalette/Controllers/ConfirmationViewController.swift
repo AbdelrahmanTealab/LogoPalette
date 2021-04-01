@@ -9,6 +9,9 @@ import UIKit
 import CoreML
 import Vision
 import Palette
+import Firebase
+import FirebaseUI
+import SDWebImage
 
 class ConfirmationViewController: UIViewController {
 
@@ -19,57 +22,38 @@ class ConfirmationViewController: UIViewController {
     @IBOutlet weak var button4: UIButton!
 
     @IBOutlet weak var customLogo: UIImageView!
-    @IBOutlet weak var customColor1: UILabel!
-    @IBOutlet weak var customColor2: UILabel!
-    @IBOutlet weak var customColor3: UILabel!
-    @IBOutlet weak var customColor4: UILabel!
-    @IBOutlet weak var customColor5: UILabel!
+    @IBOutlet weak var customVibrantColor: UILabel!
+    @IBOutlet weak var customDarkVibrantColor: UILabel!
+    @IBOutlet weak var customLightVibrantColor: UILabel!
+    @IBOutlet weak var customLightMutedColor: UILabel!
+    @IBOutlet weak var customDarkMutedColor: UILabel!
+    
+    @IBOutlet weak var originalLogo: UIImageView!
+    @IBOutlet weak var originalVibrantColor: UILabel!
+    @IBOutlet weak var originalDarkVibrantColor: UILabel!
+    @IBOutlet weak var originalLightVibrantColor: UILabel!
+    @IBOutlet weak var originalLightMutedColor: UILabel!
+    @IBOutlet weak var originalDarkMutedColor: UILabel!
     
     @IBOutlet weak var paletteSegment: UISegmentedControl!
-    
+
     @IBOutlet weak var footerView: UIView!
+    
     var results:[VNClassificationObservation]?
     var imageForDisplay:UIImage?
     var customPalleteSwatch = [String:String]()
     
-    
+    let storageRef = Storage.storage().reference()
+    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUi()
-        generateCustomPallete()
+        generateCustomPalette()
         setupUiButtons()
+        generateOriginalPalette(name: button1.currentTitle ?? "logo")
     }
-    
-    func generateCustomPallete() {
-        customLogo.image = imageForDisplay!
-        Palette.from(image: imageForDisplay!).generate { [self] in
-            customColor1.backgroundColor = $0.vibrantColor
-            customColor1.text =  customColor1.backgroundColor?.htmlRGBColor.uppercased()
-            customPalleteSwatch["color1"]=customColor1.backgroundColor?.htmlRGBColor.uppercased()
-        }
-        Palette.from(image: imageForDisplay!).generate { [self] in
-            customColor2.backgroundColor = $0.darkVibrantColor
-            customColor2.text =  customColor2.backgroundColor?.htmlRGBColor.uppercased()
-            customPalleteSwatch["color2"]=customColor2.backgroundColor?.htmlRGBColor.uppercased()
-        }
-        Palette.from(image: imageForDisplay!).generate { [self] in
-            customColor3.backgroundColor = $0.lightMutedColor
-            customColor3.text =  customColor3.backgroundColor?.htmlRGBColor.uppercased()
-            customPalleteSwatch["color3"]=customColor3.backgroundColor?.htmlRGBColor.uppercased()
-        }
-        Palette.from(image: imageForDisplay!).generate { [self] in
-            customColor4.backgroundColor = $0.mutedColor
-            customColor4.text =  customColor4.backgroundColor?.htmlRGBColor.uppercased()
-            customPalleteSwatch["color4"]=customColor4.backgroundColor?.htmlRGBColor.uppercased()
-        }
-        Palette.from(image: imageForDisplay!).generate { [self] in
-            customColor5.backgroundColor = $0.darkMutedColor
-            customColor5.text =  customColor5.backgroundColor?.htmlRGBColor.uppercased()
-            customPalleteSwatch["color5"]=customColor5.backgroundColor?.htmlRGBColor.uppercased()
-        }
-    }
-    
     func setupUi(){
         imageViewDisplay.image = imageForDisplay
         footerView.layer.shadowColor = UIColor.black.cgColor
@@ -78,11 +62,42 @@ class ConfirmationViewController: UIViewController {
         footerView.layer.shadowRadius = 2
         footerView.layer.zPosition = 1
     }
+    
+    func generateCustomPalette() {
+        customLogo.image = imageForDisplay!
+        Palette.from(image: imageForDisplay!).generate { [self] in
+            customVibrantColor.backgroundColor = $0.vibrantColor
+            customVibrantColor.text =  customVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+            customPalleteSwatch["vibrantColor"]=customVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+        }
+        Palette.from(image: imageForDisplay!).generate { [self] in
+            customDarkVibrantColor.backgroundColor = $0.darkVibrantColor
+            customDarkVibrantColor.text =  customDarkVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+            customPalleteSwatch["darkVibrantColor"]=customDarkVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+        }
+        Palette.from(image: imageForDisplay!).generate { [self] in
+            customLightVibrantColor.backgroundColor = $0.lightVibrantColor
+            customLightVibrantColor.text =  customLightVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+            customPalleteSwatch["lightVibrantColor"]=customLightVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+        }
+        Palette.from(image: imageForDisplay!).generate { [self] in
+            customLightMutedColor.backgroundColor = $0.lightMutedColor
+            customLightMutedColor.text =  customLightMutedColor.backgroundColor?.htmlRGBColor.uppercased()
+            customPalleteSwatch["lightMutedColor"]=customLightMutedColor.backgroundColor?.htmlRGBColor.uppercased()
+        }
+        Palette.from(image: imageForDisplay!).generate { [self] in
+            customDarkMutedColor.backgroundColor = $0.darkMutedColor
+            customDarkMutedColor.text =  customDarkMutedColor.backgroundColor?.htmlRGBColor.uppercased()
+            customPalleteSwatch["darkMutedColor"]=customDarkMutedColor.backgroundColor?.htmlRGBColor.uppercased()
+        }
+    }
+    
+
     func setupUiButtons() {
         let allButtons = [button1,button2,button3,button4]
         if let allResults = results {
             let description = allResults.map { classification in
-                return "\(Int(classification.confidence*100))% \(classification.identifier)"
+                return "\(classification.identifier)"
             }
             for button in allButtons {
                 button?.setTitle(description[button!.tag], for: .normal)
@@ -90,6 +105,8 @@ class ConfirmationViewController: UIViewController {
             }
         }
     }
+    
+
     
     @IBAction func logoButtonSelected(_ sender: UIButton) {
         let allButtons = [button1,button2,button3,button4]
@@ -99,7 +116,47 @@ class ConfirmationViewController: UIViewController {
                 button?.isSelected = false
             }
         }
+        generateOriginalPalette(name: sender.currentTitle ?? "logo")
     }
+    
+    func generateOriginalPalette(name:String) {
+        
+        db.collection("original palettes").whereField("name", isEqualTo: name)
+            .getDocuments() { [self] (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        if let name = data["name"] as? String,let vibrant = data["vibrantColor"] as? String,let darkVibrant = data["darkVibrantColor"] as? String,let lightVibrant = data["lightVibrantColor"] as? String, let lightMuted = data["lightMutedColor"] as? String, let darkMuted = data["darkMutedColor"] as? String{
+                            
+                            DispatchQueue.main.async {
+                                originalVibrantColor.backgroundColor = hexStringToUIColor(hex: vibrant)
+                                originalVibrantColor.text = originalVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+                                
+                                originalLightVibrantColor.backgroundColor = hexStringToUIColor(hex: darkVibrant)
+                                originalLightVibrantColor.text = originalLightVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+
+                                originalDarkVibrantColor.backgroundColor = hexStringToUIColor(hex: lightVibrant)
+                                originalDarkVibrantColor.text = originalDarkVibrantColor.backgroundColor?.htmlRGBColor.uppercased()
+
+                                originalLightMutedColor.backgroundColor = hexStringToUIColor(hex: lightMuted)
+                                originalLightMutedColor.text = originalLightMutedColor.backgroundColor?.htmlRGBColor.uppercased()
+
+                                originalDarkMutedColor.backgroundColor = hexStringToUIColor(hex: darkMuted)
+                                originalDarkMutedColor.text = originalDarkMutedColor.backgroundColor?.htmlRGBColor.uppercased()
+                            }
+                        }
+                    }
+                }
+        }
+        let logoRef = self.storageRef.child("original_logos").child("\(name).png")
+        print(logoRef)
+        DispatchQueue.main.async {
+            self.originalLogo.sd_setImage(with: logoRef, placeholderImage: UIImage(named: "logo.png"))
+        }
+    }
+    
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         let allButtons = [button1,button2,button3,button4]
@@ -134,7 +191,47 @@ class ConfirmationViewController: UIViewController {
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
     }
+    
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if (cString.hasPrefix("0X")) {
+            cString = cString.removeTheFirst(length: 2)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+
+}
+
+extension String {
+  func removeTheFirst(length:Int) -> String {
+            if length <= 0 {
+                return self
+            } else if let to = self.index(self.startIndex, offsetBy: length, limitedBy: self.endIndex) {
+                return self.substring(from: to)
+
+            } else {
+                return ""
+            }
+        }
 }
 
 extension UIButton {
@@ -154,6 +251,7 @@ extension UIButton {
 }
 
 extension UIColor {
+    
     var rgbComponents:(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         var r:CGFloat = 0
         var g:CGFloat = 0

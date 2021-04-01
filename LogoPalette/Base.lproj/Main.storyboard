@@ -960,14 +960,20 @@
                         <outlet property="button2" destination="Y1e-Ps-JJE" id="v8v-H0-a3a"/>
                         <outlet property="button3" destination="TY4-jV-Ur1" id="FaV-tr-NMG"/>
                         <outlet property="button4" destination="773-AW-n53" id="enB-qj-3i7"/>
-                        <outlet property="customColor1" destination="KCN-k3-8rc" id="a1a-ih-XFl"/>
-                        <outlet property="customColor2" destination="t97-1o-szr" id="uFL-Pl-cMA"/>
-                        <outlet property="customColor3" destination="yFr-5d-qmO" id="jBn-RL-QrT"/>
-                        <outlet property="customColor4" destination="uTg-Gq-anc" id="3c3-kv-3v0"/>
-                        <outlet property="customColor5" destination="voq-Uh-1Ki" id="zp2-Kk-hTz"/>
+                        <outlet property="customDarkMutedColor" destination="voq-Uh-1Ki" id="zp2-Kk-hTz"/>
+                        <outlet property="customDarkVibrantColor" destination="t97-1o-szr" id="uFL-Pl-cMA"/>
+                        <outlet property="customLightMutedColor" destination="uTg-Gq-anc" id="3c3-kv-3v0"/>
+                        <outlet property="customLightVibrantColor" destination="yFr-5d-qmO" id="jBn-RL-QrT"/>
                         <outlet property="customLogo" destination="esa-Zf-IT8" id="VT2-fE-18z"/>
+                        <outlet property="customVibrantColor" destination="KCN-k3-8rc" id="a1a-ih-XFl"/>
                         <outlet property="footerView" destination="gxk-CQ-X6x" id="iBu-DL-fk4"/>
                         <outlet property="imageViewDisplay" destination="cbx-vB-w2o" id="Pq7-BO-5dD"/>
+                        <outlet property="originalDarkMutedColor" destination="oOx-CY-a98" id="og9-sP-6Fx"/>
+                        <outlet property="originalDarkVibrantColor" destination="uex-DX-YCx" id="QPS-rW-BMK"/>
+                        <outlet property="originalLightMutedColor" destination="Qbm-Bf-X1V" id="6hg-bR-D7m"/>
+                        <outlet property="originalLightVibrantColor" destination="fdI-hW-RKU" id="KS2-Uq-wNq"/>
+                        <outlet property="originalLogo" destination="pxO-dN-LFB" id="cug-Fb-m8H"/>
+                        <outlet property="originalVibrantColor" destination="Wwh-ye-kdp" id="rIG-og-URJ"/>
                         <outlet property="paletteSegment" destination="zJE-dK-m4m" id="IH9-qR-dZN"/>
                     </connections>
                 </viewController>

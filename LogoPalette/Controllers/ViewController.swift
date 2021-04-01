@@ -127,18 +127,6 @@ extension ViewController: UITableViewDataSource{
         cell.cellColor5.backgroundColor = UIColor(hex: palette["color5"]! as! Int)
         cell.cellColor5.text = "#"+String(format:"%02X",palette["color5"]! as! Int)
 
-
-//        if message.sender == Auth.auth().currentUser?.email{
-//            cell.leftImageView.isHidden = true
-//            cell.rightImage.isHidden = false
-//            cell.messageBubble.backgroundColor = UIColor(named: Constants.BrandColors.lightPurple)
-//            cell.label.textColor = UIColor(named: Constants.BrandColors.purple)
-//        }
-//        else{
-//            cell.leftImageView.isHidden = false
-//            cell.rightImage.isHidden = true
-//            cell.messageBubble.backgroundColor = UIColor(named: Constants.BrandColors.purple)
-//            cell.label.textColor = UIColor(named: Constants.BrandColors.lightPurple)        }
         return cell
     }
 }
