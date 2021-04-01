@@ -180,20 +180,20 @@ class ConfirmationViewController: UIViewController {
     //MARK: - Button Functions
     
     func beautifyButton(_ button: UIButton){
-        button.setBackgroundColor(color: #colorLiteral(red: 0.8837431073, green: 1, blue: 1, alpha: 1), forState: .selected)
         button.backgroundColor = UIColor(red: 171/255, green: 178/255, blue: 186/255, alpha: 1.0)
         // Shadow Color and Radius
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         button.layer.shadowOffset = CGSize(width: 2.0, height: 3.0)
         button.layer.shadowOpacity = 1.0
-        button.layer.shadowRadius = 0.0
+        button.layer.shadowRadius = 20
         button.layer.masksToBounds = false
-        button.layer.cornerRadius = 4.0
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 20
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
+        button.setBackgroundColor(color: #colorLiteral(red: 0.8837431073, green: 1, blue: 1, alpha: 1), forState: .selected)
+
     }
     
     func hexStringToUIColor (hex:String) -> UIColor {
