@@ -767,14 +767,6 @@
                                         <exclude reference="dr7-DN-GS9"/>
                                         <exclude reference="rwx-zF-Dfy"/>
                                         <exclude reference="zSa-9K-4Vb"/>
-                                        <exclude reference="3h7-Zh-wHU"/>
-                                        <exclude reference="Tu5-lD-obf"/>
-                                        <exclude reference="cNn-Pa-8K9"/>
-                                        <exclude reference="con-r1-FFw"/>
-                                        <exclude reference="dc5-0g-tGm"/>
-                                        <exclude reference="gxo-UE-pxy"/>
-                                        <exclude reference="qoR-YP-1Z2"/>
-                                        <exclude reference="ygt-oT-zD4"/>
                                         <exclude reference="3h8-bV-qhb"/>
                                         <exclude reference="6WZ-AM-aYd"/>
                                         <exclude reference="8ly-84-JFU"/>
@@ -783,6 +775,14 @@
                                         <exclude reference="SkZ-ca-GUL"/>
                                         <exclude reference="l6j-fQ-YYP"/>
                                         <exclude reference="zc0-Uv-pqZ"/>
+                                        <exclude reference="3h7-Zh-wHU"/>
+                                        <exclude reference="Tu5-lD-obf"/>
+                                        <exclude reference="cNn-Pa-8K9"/>
+                                        <exclude reference="con-r1-FFw"/>
+                                        <exclude reference="dc5-0g-tGm"/>
+                                        <exclude reference="gxo-UE-pxy"/>
+                                        <exclude reference="qoR-YP-1Z2"/>
+                                        <exclude reference="ygt-oT-zD4"/>
                                         <exclude reference="2Mb-Ia-Rhb"/>
                                         <exclude reference="MBe-si-pKw"/>
                                         <exclude reference="NZK-QM-A6e"/>
@@ -802,14 +802,14 @@
                                         <include reference="do0-N6-kCj"/>
                                         <include reference="dr7-DN-GS9"/>
                                         <exclude reference="zSa-9K-4Vb"/>
-                                        <include reference="3h7-Zh-wHU"/>
-                                        <include reference="Tu5-lD-obf"/>
-                                        <include reference="cNn-Pa-8K9"/>
-                                        <include reference="ygt-oT-zD4"/>
                                         <include reference="3h8-bV-qhb"/>
                                         <include reference="SkZ-ca-GUL"/>
                                         <include reference="l6j-fQ-YYP"/>
                                         <include reference="zc0-Uv-pqZ"/>
+                                        <include reference="3h7-Zh-wHU"/>
+                                        <include reference="Tu5-lD-obf"/>
+                                        <include reference="cNn-Pa-8K9"/>
+                                        <include reference="ygt-oT-zD4"/>
                                         <include reference="2Mb-Ia-Rhb"/>
                                         <include reference="MBe-si-pKw"/>
                                         <include reference="NZK-QM-A6e"/>
@@ -821,14 +821,14 @@
                                         <include reference="1yC-Ac-XFe"/>
                                         <include reference="djB-BO-aVM"/>
                                         <include reference="rwx-zF-Dfy"/>
-                                        <include reference="con-r1-FFw"/>
-                                        <include reference="dc5-0g-tGm"/>
-                                        <include reference="gxo-UE-pxy"/>
-                                        <include reference="qoR-YP-1Z2"/>
                                         <include reference="6WZ-AM-aYd"/>
                                         <include reference="8ly-84-JFU"/>
                                         <include reference="EDd-A5-gca"/>
                                         <include reference="KQM-N5-sTs"/>
+                                        <include reference="con-r1-FFw"/>
+                                        <include reference="dc5-0g-tGm"/>
+                                        <include reference="gxo-UE-pxy"/>
+                                        <include reference="qoR-YP-1Z2"/>
                                         <include reference="QJW-te-upc"/>
                                         <include reference="jBs-r1-ca0"/>
                                         <include reference="obB-L9-qOe"/>
@@ -875,13 +875,20 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="LBj-Pa-RBr"/>
+                                <exclude reference="X1W-cV-KZc"/>
                                 <exclude reference="0Oh-f8-hPr"/>
                                 <exclude reference="5fK-pW-dc6"/>
                                 <exclude reference="KC2-0K-Z7K"/>
                                 <exclude reference="YpR-KN-VWF"/>
                                 <exclude reference="qdN-ih-gfI"/>
-                                <exclude reference="LBj-Pa-RBr"/>
-                                <exclude reference="X1W-cV-KZc"/>
+                                <exclude reference="3U8-lu-ldP"/>
+                                <exclude reference="43Y-5v-X26"/>
+                                <exclude reference="8mO-Xw-rwY"/>
+                                <exclude reference="J9Z-K5-KN0"/>
+                                <exclude reference="QLc-sG-POq"/>
+                                <exclude reference="d0c-jz-8Fy"/>
+                                <exclude reference="jSt-s3-kA3"/>
                                 <exclude reference="7Nh-bR-TW2"/>
                                 <exclude reference="HN8-eb-sjv"/>
                                 <exclude reference="Oh4-9s-EaK"/>
@@ -899,13 +906,6 @@
                                 <exclude reference="kIb-Go-fs7"/>
                                 <exclude reference="mKi-t2-sRF"/>
                                 <exclude reference="vf5-cR-bjn"/>
-                                <exclude reference="3U8-lu-ldP"/>
-                                <exclude reference="43Y-5v-X26"/>
-                                <exclude reference="8mO-Xw-rwY"/>
-                                <exclude reference="J9Z-K5-KN0"/>
-                                <exclude reference="QLc-sG-POq"/>
-                                <exclude reference="d0c-jz-8Fy"/>
-                                <exclude reference="jSt-s3-kA3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -913,6 +913,9 @@
                                 <include reference="0Oh-f8-hPr"/>
                                 <include reference="KC2-0K-Z7K"/>
                                 <include reference="YpR-KN-VWF"/>
+                                <include reference="43Y-5v-X26"/>
+                                <include reference="J9Z-K5-KN0"/>
+                                <include reference="jSt-s3-kA3"/>
                                 <include reference="HN8-eb-sjv"/>
                                 <include reference="Oh4-9s-EaK"/>
                                 <include reference="sFk-yD-0lb"/>
@@ -922,17 +925,18 @@
                                 <include reference="aKp-GO-GJA"/>
                                 <include reference="mKi-t2-sRF"/>
                                 <include reference="vf5-cR-bjn"/>
-                                <include reference="43Y-5v-X26"/>
-                                <include reference="J9Z-K5-KN0"/>
-                                <include reference="jSt-s3-kA3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="5fK-pW-dc6"/>
-                                <include reference="qdN-ih-gfI"/>
                                 <include reference="LBj-Pa-RBr"/>
                                 <include reference="X1W-cV-KZc"/>
+                                <include reference="5fK-pW-dc6"/>
+                                <include reference="qdN-ih-gfI"/>
+                                <include reference="3U8-lu-ldP"/>
+                                <include reference="8mO-Xw-rwY"/>
+                                <include reference="QLc-sG-POq"/>
+                                <include reference="d0c-jz-8Fy"/>
                                 <include reference="7Nh-bR-TW2"/>
                                 <include reference="ZLs-pu-TaI"/>
                                 <include reference="h8l-IT-Aps"/>
@@ -941,10 +945,6 @@
                                 <include reference="En3-3R-LdG"/>
                                 <include reference="c2J-xz-RXL"/>
                                 <include reference="kIb-Go-fs7"/>
-                                <include reference="3U8-lu-ldP"/>
-                                <include reference="8mO-Xw-rwY"/>
-                                <include reference="QLc-sG-POq"/>
-                                <include reference="d0c-jz-8Fy"/>
                             </mask>
                         </variation>
                     </view>
@@ -960,6 +960,11 @@
                         <outlet property="button2" destination="Y1e-Ps-JJE" id="v8v-H0-a3a"/>
                         <outlet property="button3" destination="TY4-jV-Ur1" id="FaV-tr-NMG"/>
                         <outlet property="button4" destination="773-AW-n53" id="enB-qj-3i7"/>
+                        <outlet property="customColor1" destination="KCN-k3-8rc" id="a1a-ih-XFl"/>
+                        <outlet property="customColor2" destination="t97-1o-szr" id="uFL-Pl-cMA"/>
+                        <outlet property="customColor3" destination="yFr-5d-qmO" id="jBn-RL-QrT"/>
+                        <outlet property="customColor4" destination="uTg-Gq-anc" id="3c3-kv-3v0"/>
+                        <outlet property="customColor5" destination="voq-Uh-1Ki" id="zp2-Kk-hTz"/>
                         <outlet property="footerView" destination="gxk-CQ-X6x" id="iBu-DL-fk4"/>
                         <outlet property="imageViewDisplay" destination="cbx-vB-w2o" id="Pq7-BO-5dD"/>
                         <outlet property="paletteSegment" destination="zJE-dK-m4m" id="IH9-qR-dZN"/>
@@ -1007,13 +1012,13 @@
         <image name="folder.circle.fill" catalog="system" width="128" height="121"/>
         <image name="logo" width="540" height="540"/>
         <namedColor name="Alice Blue">
-            <color red="0.92941176470588238" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.92900002002716064" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Ming">
-            <color red="0.0" green="0.42745098039215684" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.42699998617172241" blue="0.46700000762939453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Ming Blue green">
-            <color red="0.51372549019607838" green="0.77254901960784317" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.51399999856948853" green="0.77300000190734863" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
