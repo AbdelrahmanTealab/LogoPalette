@@ -150,10 +150,14 @@ class ConfirmationViewController: UIViewController {
                     }
                 }
         }
-        let logoRef = self.storageRef.child("original_logos").child("\(name).png")
-        print(logoRef)
-        DispatchQueue.main.async {
-            self.originalLogo.sd_setImage(with: logoRef, placeholderImage: UIImage(named: "logo.png"))
+        var logoURL = ""
+        storageRef.child("original_logos/").child("\(name).png").downloadURL { (url, err) in
+            if err != nil{
+                print(err?.localizedDescription)
+            }
+            logoURL = "\(url!)"
+            print(logoURL)
+            self.originalLogo.sd_setImage(with: URL(string:logoURL), placeholderImage: UIImage(named: "logo.png"))
         }
     }
     
