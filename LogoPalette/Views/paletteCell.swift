@@ -37,7 +37,7 @@ class paletteCell: UITableViewCell {
         let horizontalConstraint = cellView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         let verticalConstraint = cellView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         let widthConstraint = cellView.widthAnchor.constraint(equalToConstant: 100)
-        let heightConstraint = cellView.heightAnchor.constraint(equalToConstant: 100)
+        let heightConstraint = cellView.heightAnchor.constraint(equalToConstant: 120)
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         cellPaletteStackView.layer.cornerRadius = 12
         cellPaletteStackView.clipsToBounds = true
