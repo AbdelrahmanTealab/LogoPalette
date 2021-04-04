@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,14 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="KGk-i7-Jjw" customClass="paletteCell" customModule="LogoPalette" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="95" id="KGk-i7-Jjw" customClass="paletteCell" customModule="LogoPalette" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PS7-7I-zKN" customClass="CornerShadowView" customModule="LogoPalette" customModuleProvider="target">
+                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PS7-7I-zKN">
                         <rect key="frame" x="5" y="10" width="310" height="80"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="veg-MH-YEg" userLabel="logo">
@@ -27,7 +28,7 @@
                                     <constraint firstAttribute="width" secondItem="veg-MH-YEg" secondAttribute="height" multiplier="1:1" id="pyJ-mL-m6D"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jAR-ac-hcq">
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jAR-ac-hcq">
                                 <rect key="frame" x="75" y="5" width="230" height="70"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQG-hC-tyQ" userLabel="color 1">
@@ -128,7 +129,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="1" alpha="0.89764150943396226" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jAR-ac-hcq" firstAttribute="top" secondItem="PS7-7I-zKN" secondAttribute="top" constant="5" id="6pE-o3-skr"/>
                             <constraint firstAttribute="trailing" secondItem="jAR-ac-hcq" secondAttribute="trailing" constant="5" id="KTU-eo-W0Z"/>
@@ -140,6 +141,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" name="background"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="PS7-7I-zKN" secondAttribute="bottom" constant="10" id="1IU-o9-3jc"/>
                     <constraint firstItem="PS7-7I-zKN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="3Oc-kM-wey"/>
@@ -158,11 +160,14 @@
                 <outlet property="cellPaletteStackView" destination="jAR-ac-hcq" id="q4K-DQ-n66"/>
                 <outlet property="cellView" destination="PS7-7I-zKN" id="4a5-BI-x2E"/>
             </connections>
-            <point key="canvasLocation" x="111.59420289855073" y="63.28125"/>
+            <point key="canvasLocation" x="110.14492753623189" y="69.308035714285708"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="logo" width="540" height="540"/>
+        <namedColor name="background">
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

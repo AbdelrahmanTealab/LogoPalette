@@ -29,6 +29,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -72,7 +73,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="bot"/>
+                                <color key="backgroundColor" name="bar"/>
                                 <constraints>
                                     <constraint firstItem="V6Y-uL-x7f" firstAttribute="top" secondItem="XLJ-KH-4w5" secondAttribute="top" constant="10" id="4RC-nT-Xca"/>
                                     <constraint firstItem="Cv1-OT-FcQ" firstAttribute="leading" secondItem="XLJ-KH-4w5" secondAttribute="leading" constant="10" id="5fI-PZ-xbm"/>
@@ -130,7 +131,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="background"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="XLJ-KH-4w5" secondAttribute="trailing" id="1HZ-34-jEX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="P1q-Zw-4Ak" secondAttribute="bottom" id="6Sj-AJ-bgl"/>
@@ -186,6 +187,7 @@
                     <connections>
                         <outlet property="albumButton" destination="P1q-Zw-4Ak" id="rvP-oK-Q3D"/>
                         <outlet property="cameraButton" destination="RIz-kM-9Tn" id="TFP-QV-c2r"/>
+                        <outlet property="footerView" destination="XLJ-KH-4w5" id="6NP-8u-Gak"/>
                         <outlet property="tableView" destination="Hin-nU-7B2" id="FL1-BJ-hYO"/>
                         <segue destination="k0p-M5-Uib" kind="show" identifier="confirmationModal" id="KVu-Q2-RsB"/>
                     </connections>
@@ -204,7 +206,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxk-CQ-X6x" userLabel="smallfooter">
                                 <rect key="frame" x="0.0" y="856" width="414" height="40"/>
-                                <color key="backgroundColor" name="bot"/>
+                                <color key="backgroundColor" name="bar"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zJE-dK-m4m">
                                 <rect key="frame" x="139.5" y="531.5" width="135" height="32"/>
@@ -1223,7 +1225,7 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="accent"/>
-                        <color key="barTintColor" name="top"/>
+                        <color key="barTintColor" name="bar"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <color key="textColor" name="accent"/>
@@ -1258,13 +1260,13 @@
             <color red="0.51399999856948853" green="0.77300000190734863" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="accent">
-            <color red="0.90600001811981201" green="0.43500000238418579" blue="0.31799998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.125" green="0.125" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="bot">
-            <color red="0.98000001907348633" green="0.88200002908706665" blue="0.86699998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="background">
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="top">
-            <color red="0.98000001907348633" green="0.88200002908706665" blue="0.86699998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="bar">
+            <color red="0.76099997758865356" green="0.76099997758865356" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

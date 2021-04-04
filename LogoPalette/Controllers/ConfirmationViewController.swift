@@ -56,10 +56,10 @@ class ConfirmationViewController: UIViewController {
     }
     func setupUi(){
         imageViewDisplay.image = imageForDisplay
-        footerView.layer.shadowColor = UIColor.black.cgColor
-        footerView.layer.shadowOpacity = 1
-        footerView.layer.shadowOffset = CGSize(width: 0, height: -5.0)
-        footerView.layer.shadowRadius = 2
+        footerView.layer.shadowColor = UIColor.darkGray.cgColor
+        footerView.layer.shadowOpacity = 0.9
+        footerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        footerView.layer.shadowRadius = 4
         footerView.layer.zPosition = 1
     }
     

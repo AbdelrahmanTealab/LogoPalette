@@ -14,6 +14,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     @IBOutlet weak var albumButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var footerView: UIView!
     
     let imagePicker = UIImagePickerController()
     let palettes = [["logo":"logo","title":"default1","color1":0x2b2d42,"color2":0x8d99ae,"color3":0xedf2f4,"color4":0xef233c,"color5":0xd90429],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456]]
@@ -31,6 +32,11 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
         
+        footerView.layer.shadowColor = UIColor.darkGray.cgColor
+        footerView.layer.shadowOpacity = 0.9
+        footerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        footerView.layer.shadowRadius = 4
+        footerView.layer.zPosition = 1
 
     }
     
