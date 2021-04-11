@@ -8,16 +8,27 @@
 import UIKit
 import CoreML
 import Vision
+import Firebase
+import Firebase
+import FirebaseUI
+import SDWebImage
+import Kingfisher
 
 class ViewController: UIViewController,UINavigationControllerDelegate {
     
     @IBOutlet weak var albumButton: UIButton!
+    @IBOutlet weak var albumButtonLandscape: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var cameraButtonLandscape: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerView: UIView!
     
+    let storageRef = Storage.storage().reference()
+    let db = Firestore.firestore()
+    
     let imagePicker = UIImagePickerController()
-    let palettes = [["logo":"logo","title":"default1","color1":0x2b2d42,"color2":0x8d99ae,"color3":0xedf2f4,"color4":0xef233c,"color5":0xd90429],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456],["logo":"logo","title":"default1","color1":0x123456,"color2":0x123456,"color3":0x123456,"color4":0x123456,"color5":0x123456],["logo":"logo","title":"default2","color1":0xabcdef,"color2":0x14ba29,"color3":0xabcdef,"color4":0x9afef1,"color5":0xabcdef],["logo":"logo","title":"defaul3","color1":0x123456,"color2":0xabcdef,"color3":0x123456,"color4":0xabcdef,"color5":0x123456]]
+    var palettes = [
+        UserPalettes(logo: UIImage(named: "logo")!, darkVibrantColor: "0x123456", lightVibrantColor: "0xabcdef", vibrantColor: "0x654321", lightMutedColor: "0xfedcba", darkMutedColor: "0xaa66bb")]
     
     var mlResults = Array<VNClassificationObservation>()
     var editedImage = UIImage()
@@ -25,19 +36,29 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.hidesBackButton = true
+        
         tableView.dataSource = self
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
         
-        footerView.layer.shadowColor = UIColor.darkGray.cgColor
-        footerView.layer.shadowOpacity = 0.9
-        footerView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        footerView.layer.shadowRadius = 4
-        footerView.layer.zPosition = 1
+        addShadows(footerView)
+        addShadows(albumButton)
+        addShadows(albumButtonLandscape)
+        addShadows(cameraButton)
+        addShadows(cameraButtonLandscape)
 
+        loadData()
+    }
+    
+    func addShadows(_ view:UIView) {
+        view.layer.shadowColor = UIColor.darkGray.cgColor
+        view.layer.shadowOpacity = 0.9
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.shadowRadius = 4
+        view.layer.zPosition = 1
     }
     
     //MARK:- Button Click Events
@@ -88,6 +109,82 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
             }
         }
     
+    @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
+        do {
+          try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+    }
+    
+    func loadData() {
+        db.collection(Constants.FStore.userCollection).whereField("owner", isEqualTo: (Auth.auth().currentUser?.email)!).addSnapshotListener { (querySnapshot, error) in
+            if let e = error{
+                print(e)
+                let alert = UIAlertController(title: "ERROR", message: e.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+            else{
+                if let snapshotDocs =  querySnapshot?.documents {
+                    for doc in snapshotDocs{
+                        let data = doc.data()
+                        if let darkVibrantColor = data["darkVibrantColor"] as? String,
+                           let lightVibrantColor = data["lightVibrantColor"] as? String,
+                           let vibrantColor = data["vibrantColor"] as? String,
+                           let lightMutedColor = data["lightMutedColor"] as? String,
+                           let darkMutedColor = data["darkMutedColor"] as? String,
+                           let imageURL = data["imageURL"] as? String,
+                           let docID = data["docID"] as? String,
+                           let logo = data["logo"] as? Data
+                           {
+                            if let url = URL(string: imageURL), let mylogo = UIImage(data: logo){
+                                let newUserPalette = UserPalettes(logo: mylogo, darkVibrantColor: darkVibrantColor, lightVibrantColor: lightVibrantColor, vibrantColor: vibrantColor, lightMutedColor: lightMutedColor, darkMutedColor: darkMutedColor)
+                                self.palettes.append(newUserPalette)
+
+                            }
+
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                                let indexPath = IndexPath(row: self.palettes.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if (cString.hasPrefix("0X")) {
+            cString = cString.removeTheFirst(length: 2)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
 }
  //MARK:- Extensions
 
@@ -114,24 +211,25 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let palette = palettes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! paletteCell
-        cell.cellLogo.image = UIImage(named: palette["logo"]! as! String)
         
-        cell.cellColor1.backgroundColor = UIColor(hex: palette["color1"]! as! Int)
-        cell.cellColor1.text = "#"+String(format:"%02X",palette["color1"]! as! Int)
+        let currentPalette = palettes[indexPath.row]
+        cell.cellLogo.image = currentPalette.logo
+            
+        cell.cellColor1.backgroundColor = hexStringToUIColor(hex: currentPalette.vibrantColor)
+        cell.cellColor1.text = cell.cellColor1.backgroundColor?.htmlRGBColor.uppercased()
         
-        cell.cellColor2.backgroundColor = UIColor(hex: palette["color2"]! as! Int)
-        cell.cellColor2.text = "#"+String(format:"%02X",palette["color2"]! as! Int)
+        cell.cellColor2.backgroundColor = hexStringToUIColor(hex: currentPalette.darkVibrantColor)
+        cell.cellColor2.text = cell.cellColor2.backgroundColor?.htmlRGBColor.uppercased()
 
-        cell.cellColor3.backgroundColor = UIColor(hex: palette["color3"]! as! Int)
-        cell.cellColor3.text = "#"+String(format:"%02X",palette["color3"]! as! Int)
+        cell.cellColor3.backgroundColor = hexStringToUIColor(hex: currentPalette.lightVibrantColor)
+        cell.cellColor3.text = cell.cellColor3.backgroundColor?.htmlRGBColor.uppercased()
 
-        cell.cellColor4.backgroundColor = UIColor(hex: palette["color4"]! as! Int)
-        cell.cellColor4.text = "#"+String(format:"%02X",palette["color4"]! as! Int)
+        cell.cellColor4.backgroundColor = hexStringToUIColor(hex: currentPalette.lightMutedColor)
+        cell.cellColor4.text = cell.cellColor4.backgroundColor?.htmlRGBColor.uppercased()
 
-        cell.cellColor5.backgroundColor = UIColor(hex: palette["color5"]! as! Int)
-        cell.cellColor5.text = "#"+String(format:"%02X",palette["color5"]! as! Int)
+        cell.cellColor5.backgroundColor = hexStringToUIColor(hex: currentPalette.darkMutedColor)
+        cell.cellColor5.text = cell.cellColor5.backgroundColor?.htmlRGBColor.uppercased()
 
         return cell
     }

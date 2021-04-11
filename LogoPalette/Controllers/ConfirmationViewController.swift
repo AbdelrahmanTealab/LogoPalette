@@ -121,7 +121,7 @@ class ConfirmationViewController: UIViewController {
     
     func generateOriginalPalette(name:String) {
         
-        db.collection("original palettes").whereField("name", isEqualTo: name)
+        db.collection(Constants.FStore.originalCollection).whereField("name", isEqualTo: name)
             .getDocuments() { [self] (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -164,17 +164,93 @@ class ConfirmationViewController: UIViewController {
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         let allButtons = [button1,button2,button3,button4]
+        var selectionDone = false
+        
+        var image_ToSave = Data()
+        var imageName_ToSave = UUID().uuidString
+        var vibrantColor_ToSave = String()
+        var darkVibrantColor_ToSave = String()
+        var lightVibrantColor_ToSave = String()
+        var lightMutedColor_ToSave = String()
+        var darkMutedColor_ToSave = String()
+
+        
         for button in allButtons {
-            if ((button?.isSelected) != nil) {
-                self.dismiss(animated: true, completion: nil)
-            }
-            else{
-                let alert = UIAlertController(title: "Alert", message: "You have to choose one of the predicted logos", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+            if (button?.isSelected == true) {
+                selectionDone = true
+                break
             }
         }
 
+        if selectionDone {
+            if paletteSegment.selectedSegmentIndex == 0 {
+                image_ToSave = customLogo.image!.jpegData(compressionQuality: 1.0)!
+                vibrantColor_ToSave = customVibrantColor.text ?? "0x000000"
+                darkVibrantColor_ToSave = customDarkVibrantColor.text ?? "0x000000"
+                lightVibrantColor_ToSave = customLightVibrantColor.text ?? "0x000000"
+                lightMutedColor_ToSave = customLightMutedColor.text ?? "0x000000"
+                darkMutedColor_ToSave = customDarkMutedColor.text ?? "0x000000"
+            }
+            else{
+                image_ToSave = originalLogo.image!.jpegData(compressionQuality: 1.0)!
+                vibrantColor_ToSave = originalVibrantColor.text ?? "0x000000"
+                darkVibrantColor_ToSave = originalDarkVibrantColor.text ?? "0x000000"
+                lightVibrantColor_ToSave = originalLightVibrantColor.text ?? "0x000000"
+                lightMutedColor_ToSave = originalLightMutedColor.text ?? "0x000000"
+                darkMutedColor_ToSave = originalDarkMutedColor.text ?? "0x000000"
+            }
+            
+            let sRef = storageRef.child("user_logos/").child("\((Auth.auth().currentUser?.email)!)/").child(imageName_ToSave)
+            sRef.putData(image_ToSave, metadata: nil) { (metadata, error) in
+                if let e = error{
+                    print(e)
+                    let alert = UIAlertController(title: "ERROR", message: e.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                    NSLog("The \"OK\" alert occured.")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                sRef.downloadURL(completion: {(url,error) in
+                    if let e = error{
+                        print(e)
+                        let alert = UIAlertController(title: "ERROR", message: e.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                        NSLog("The \"OK\" alert occured.")
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    guard let url = url else{
+                        print("error obtaining url")
+                        return
+                    }
+                    let dataRef = self.db.collection(Constants.FStore.userCollection).document()
+                    let docID = dataRef.documentID
+                    let urlString = url.absoluteString
+                    
+                    let data_ToSave = ["owner":(Auth.auth().currentUser?.email)!,"imageURL":urlString,"docID":docID,"logo":image_ToSave,"vibrantColor":vibrantColor_ToSave,"darkVibrantColor":darkVibrantColor_ToSave,"lightVibrantColor":lightVibrantColor_ToSave,"lightMutedColor":lightMutedColor_ToSave,"darkMutedColor":darkMutedColor_ToSave] as [String : Any]
+                    dataRef.setData(data_ToSave) { (error) in
+                        if let e = error{
+                            print(e)
+                            let alert = UIAlertController(title: "ERROR", message: e.localizedDescription, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                            NSLog("The \"OK\" alert occured.")
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        else{
+                            
+                        }
+                    }
+                    
+                })
+            }
+            
+        }
+        else{
+            let alert = UIAlertController(title: "Alert", message: "You have to choose one of the predicted logos", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     //MARK: - Button Functions

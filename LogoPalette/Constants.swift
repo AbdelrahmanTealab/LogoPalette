@@ -12,8 +12,11 @@ struct Constants {
     static let cellIdentifier = "ReusableCell"
     static let cellNibName = "paletteCell"
     static let segueIdentifier = "confirmationModal"
+    static let registerSegue = "registerToMain"
+    static let loginSegue = "loginToMain"
     
     struct FStore {
-
+        static let userCollection = "user palettes"
+        static let originalCollection = "original palettes"
     }
 }
