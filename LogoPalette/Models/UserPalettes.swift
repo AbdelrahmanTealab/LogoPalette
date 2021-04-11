@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 struct UserPalettes {
+    let docID: String
+    let imageURL: URL
     let logo: UIImage
     let darkVibrantColor: String
     let lightVibrantColor: String

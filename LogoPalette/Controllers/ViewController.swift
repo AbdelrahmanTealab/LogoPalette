@@ -27,19 +27,24 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     let db = Firestore.firestore()
     
     let imagePicker = UIImagePickerController()
-    var palettes = [
-        UserPalettes(logo: UIImage(named: "logo")!, darkVibrantColor: "0x123456", lightVibrantColor: "0xabcdef", vibrantColor: "0x654321", lightMutedColor: "0xfedcba", darkMutedColor: "0xaa66bb")]
+    var palettes: Array<UserPalettes> = Array<UserPalettes>()
     
     var mlResults = Array<VNClassificationObservation>()
     var editedImage = UIImage()
     
-    
+    var refresh = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
+        
+        refresh.addTarget(self, action: #selector(ViewController.loadData), for: .valueChanged)
+        tableView.addSubview(refresh)
+        
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
@@ -77,8 +82,27 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
         }
     }
     
+    //MARK: - swipe functions
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
+            let currentPalette = palettes[indexPath.row]
+            let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+                self.db.collection(Constants.FStore.userCollection).document(currentPalette.docID).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print("Document successfully removed!")
+                    }
+                }
+                completion(true)
+            }
+            action.image = UIImage(systemName: "trash.slash")
+            action.backgroundColor = .red
+            return action
+        }
+    
     //MARK:- Functions
     
+    //function to detect image logo
     func detect(image:CIImage) {
         
         guard let model = try? VNCoreMLModel(for: LogoIdentifier_1().model) else{
@@ -98,6 +122,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
         }
     }
     
+    //prepare for segue with AI results and image chosen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if(segue.identifier == Constants.segueIdentifier) {
                 guard let segueData = sender as? TransferData
@@ -109,6 +134,8 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
             }
         }
     
+    
+    //function to logout
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
         do {
           try Auth.auth().signOut()
@@ -118,7 +145,8 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
         }
     }
     
-    func loadData() {
+    //function to load the data from firebase
+    @objc func loadData() {
         db.collection(Constants.FStore.userCollection).whereField("owner", isEqualTo: (Auth.auth().currentUser?.email)!).addSnapshotListener { (querySnapshot, error) in
             if let e = error{
                 print(e)
@@ -130,6 +158,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
             }
             else{
                 if let snapshotDocs =  querySnapshot?.documents {
+                    self.palettes.removeAll()
                     for doc in snapshotDocs{
                         let data = doc.data()
                         if let darkVibrantColor = data["darkVibrantColor"] as? String,
@@ -142,16 +171,15 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
                            let logo = data["logo"] as? Data
                            {
                             if let url = URL(string: imageURL), let mylogo = UIImage(data: logo){
-                                let newUserPalette = UserPalettes(logo: mylogo, darkVibrantColor: darkVibrantColor, lightVibrantColor: lightVibrantColor, vibrantColor: vibrantColor, lightMutedColor: lightMutedColor, darkMutedColor: darkMutedColor)
+                                let newUserPalette = UserPalettes(docID:docID,imageURL: url, logo: mylogo, darkVibrantColor: darkVibrantColor, lightVibrantColor: lightVibrantColor, vibrantColor: vibrantColor, lightMutedColor: lightMutedColor, darkMutedColor: darkMutedColor)
                                 self.palettes.append(newUserPalette)
 
                             }
 
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
-                                let indexPath = IndexPath(row: self.palettes.count - 1, section: 0)
-                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                             }
+                            self.refresh.endRefreshing()
                         }
                     }
                 }
@@ -159,6 +187,8 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
         }
         
     }
+    
+    //function to parse a hex string to a color
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
@@ -205,9 +235,14 @@ extension ViewController: UIImagePickerControllerDelegate{
     }
 }
 
-extension ViewController: UITableViewDataSource{
+extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return palettes.count
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
