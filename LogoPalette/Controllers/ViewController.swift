@@ -32,6 +32,8 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
     var mlResults = Array<VNClassificationObservation>()
     var editedImage = UIImage()
     
+    var cellBg = UIColor(named: "background")!
+    
     var refresh = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -99,6 +101,43 @@ class ViewController: UIViewController,UINavigationControllerDelegate {
             action.backgroundColor = .red
             return action
         }
+    
+    func tryTheme(at indexPath: IndexPath) -> UIContextualAction {
+        let currentPalette = palettes[indexPath.row]
+        let action = UIContextualAction(style: .normal, title: "Try") { [self] (action, view, completion) in
+            
+            self.view.backgroundColor = hexStringToUIColor(hex: currentPalette.lightVibrantColor)
+            self.tableView.backgroundColor = hexStringToUIColor(hex: currentPalette.lightVibrantColor)
+            cellBg = hexStringToUIColor(hex: currentPalette.lightVibrantColor)
+
+            self.footerView.backgroundColor = hexStringToUIColor(hex: currentPalette.darkVibrantColor)
+            self.navigationController?.navigationBar.barTintColor = hexStringToUIColor(hex: currentPalette.darkVibrantColor)
+            
+            self.navigationController?.navigationBar.tintColor = hexStringToUIColor(hex: currentPalette.vibrantColor)
+
+            if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+                textAttributes[NSAttributedString.Key.foregroundColor] = hexStringToUIColor(hex: currentPalette.vibrantColor)
+                navigationController?.navigationBar.titleTextAttributes = textAttributes
+            }
+            
+            if var textAttributes = navigationController?.navigationBar.largeTitleTextAttributes {
+                textAttributes[NSAttributedString.Key.foregroundColor] = hexStringToUIColor(hex: currentPalette.vibrantColor)
+                navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
+            }
+            
+            self.albumButton.tintColor = hexStringToUIColor(hex: currentPalette.vibrantColor)
+            self.albumButtonLandscape.tintColor = hexStringToUIColor(hex: currentPalette.vibrantColor)
+            self.cameraButton.tintColor = hexStringToUIColor(hex: currentPalette.vibrantColor)
+            self.cameraButtonLandscape.tintColor = hexStringToUIColor(hex: currentPalette.vibrantColor)
+            
+                
+            self.tableView.reloadData()
+            completion(true)
+            }
+        action.image = UIImage(systemName: "paintpalette")
+        action.backgroundColor = .darkGray
+        return action
+    }
     
     //MARK:- Functions
     
@@ -241,12 +280,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let tryT = tryTheme(at: indexPath)
         let delete = deleteAction(at: indexPath)
-        return UISwipeActionsConfiguration(actions: [delete])
+        return UISwipeActionsConfiguration(actions: [tryT,delete])
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! paletteCell
+        cell.backgroundColor = cellBg
         
         let currentPalette = palettes[indexPath.row]
         cell.cellLogo.image = currentPalette.logo
