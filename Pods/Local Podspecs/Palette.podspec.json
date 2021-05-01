@@ -1,0 +1,23 @@
+{
+  "name": "Palette",
+  "version": "1.0.6",
+  "summary": "Color palette generation from image written in Swift",
+  "homepage": "https://github.com/galandezzz/Palette",
+  "license": "MIT",
+  "authors": {
+    "Egor Snitsar": "fearum@icloud.com"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "swift_versions": "5.0",
+  "source": {
+    "git": "https://github.com/galandezzz/Palette.git",
+    "tag": "v1.0.6"
+  },
+  "source_files": [
+    "Source/*",
+    "Source/*/*"
+  ],
+  "swift_version": "5.0"
+}

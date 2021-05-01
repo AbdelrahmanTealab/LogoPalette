@@ -1,0 +1,6 @@
+framework module Palette {
+  umbrella header "Palette-umbrella.h"
+
+  export *
+  module * { export * }
+}

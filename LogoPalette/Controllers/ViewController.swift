@@ -9,10 +9,8 @@ import UIKit
 import CoreML
 import Vision
 import Firebase
-import Firebase
 import FirebaseUI
 import SDWebImage
-import Kingfisher
 
 class ViewController: UIViewController,UINavigationControllerDelegate {
     

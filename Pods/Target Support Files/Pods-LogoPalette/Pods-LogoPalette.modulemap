@@ -1,0 +1,6 @@
+framework module Pods_LogoPalette {
+  umbrella header "Pods-LogoPalette-umbrella.h"
+
+  export *
+  module * { export * }
+}
